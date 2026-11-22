@@ -1,6 +1,6 @@
 # Steganografia 
 
-App macOS (SwiftUI) per studiare steganografia **LSB** e steganalisi su immagini.
+App macOS (SwiftUI) per studiare steganografia **LSB** e steganalisi su immagini e audio.
 Nessuna dipendenza esterna: solo SwiftUI, AppKit, Core Graphics.
 
 ## Requisiti
@@ -28,8 +28,13 @@ xcodebuild -project Steganografia.xcodeproj -scheme Steganografia \
 **Header di 8 byte**: `"SL" | versione | strategia | lunghezza UInt32` sui primi
 64 pixel in ordine di scansione. L'estrazione non chiede nulla all'utente.
 
-**L'output è sempre PNG.** 
+## Immagini
+**L'output è sempre PNG per le immagini.** 
 
+## Dataset di immagini
+- Usa il dataset da HuggingFace [pk3388/watches](https://huggingface.co/datasets/pk3388/watches)
+- Per l’elaborazione di batch di immagini utilizziamo un background thread, tornando su **Main Actor** solo per gli aggiornamenti di UI
+- Di default scrive su tutti i byte disponibili oppure un messaggio stringa
 
 **Strategia:** 
 - Scrittura su file di Immagini o file Audio supportati da AVFoundation (i formati più comuni)
@@ -48,8 +53,3 @@ il supporto. L'audio usa esattamente lo stesso header di 8 byte e la stessa
 logica LSB, un bit per campione PCM.
 
 **L'uscita è sempre WAV.** Un formato compresso (MP3, AAC) distruggerebbe i bit nascosti, come il JPEG per le immagini.
-
-## Dataset
-- Usa il dataset da HuggingFace [pk3388/watches](https://huggingface.co/datasets/pk3388/watches)
-- Per l’elaborazione di batch di immagini utilizziamo un background thread, tornando su **Main Actor** solo per gli aggiornamenti di UI
-- Di default scrive su tutti i byte disponibili oppure un messaggio stringa
