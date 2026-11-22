@@ -3,11 +3,11 @@ import Foundation
   /// BER 
 struct BERCalculator {
   
-  func ber(reference: Data, recovered: Data) -> Double {
+  func ber(reference: Data, recovered: Data) -> Double? {
     guard !reference.isEmpty,
           reference.count == recovered.count
             else {
-      return 0
+      return nil
     }
     
     var errorBits = 0
@@ -24,7 +24,7 @@ struct BERCalculator {
     return Double(errorBits) / (Double(reference.count) * 8.0)
   }
   
-  func ber(reference: Payload, recovered: Payload) -> Double {
+  func ber(reference: Payload, recovered: Payload) -> Double? {
     ber(reference: Data(reference.utf8), recovered: Data(recovered.utf8))
   }
 }

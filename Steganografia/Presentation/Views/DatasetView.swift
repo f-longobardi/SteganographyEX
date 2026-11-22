@@ -143,7 +143,7 @@ struct DatasetView: View {
         MetricTile(title: "Immagini", value: "\(model.results.count)")
         MetricTile(title: "PSNR medio", value: String(format: "%.3f dB", average(\.psnr)))
         MetricTile(title: "SSIM medio", value: String(format: "%.4f", average(\.ssim)))
-        MetricTile(title: "BER medio", value: String(format: "%.6f", average(\.ber)))
+        MetricTile(title: "BER medio", value: averageBER.map { String(format: "%.6f", $0) } ?? "n/d")
       }
       
       DistributionChart(
@@ -158,7 +158,7 @@ struct DatasetView: View {
       )
       DistributionChart(
         title: "Distribuzione BER",
-        values: model.results.map(\.ber),
+        values: model.results.compactMap(\.ber),
         format: { String(format: "%.6f", $0) }
       )
     }
@@ -167,6 +167,11 @@ struct DatasetView: View {
   private func average(_ keyPath: KeyPath<AnalysisResult, Double>) -> Double {
     let values = model.results.map { $0[keyPath: keyPath] }.filter { $0.isFinite }
     return values.isEmpty ? 0 : values.reduce(0, +) / Double(values.count)
+  }
+  
+  private var averageBER: Double? {
+    let values = model.results.compactMap(\.ber).filter(\.isFinite)
+    return values.isEmpty ? nil : values.reduce(0, +) / Double(values.count)
   }
 }
 

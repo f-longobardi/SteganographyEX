@@ -4,7 +4,7 @@ struct AnalysisResult: Sendable {
   var payloadSizeBytes: Int
   var psnr: Double
   var ssim: Double
-  var ber: Double
+  var ber: Double?
   
   var payloadSizeText: String {
     let formatter = ByteCountFormatter()
@@ -15,5 +15,8 @@ struct AnalysisResult: Sendable {
   
   var psnrText: String { psnr.isInfinite ? "∞ dB" : String(format: "%.3f dB", psnr) }
   var ssimText: String { String(format: "%.4f", ssim) }
-  var berText: String { String(format: "%.6f", ber) }
+  var berText: String {
+    guard let ber else { return "n/d" }
+    return String(format: "%.6f", ber)
+  }
 }

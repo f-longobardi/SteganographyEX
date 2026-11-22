@@ -41,16 +41,14 @@ xcodebuild -project Steganografia.xcodeproj -scheme Steganografia \
 - Possibile scrittura uniforme o solo sui bordi di un immagine tramite edge detection.
 - Edge Detection con: Sobel con soglia a 128, altri metodi di Edge detection sono stati testati e ancora nel codice, come Canny Edge
 - per i file di immagini ho scelto di scrivere solo nel canale del blu. Ho scelto il canale blu perché è quello che ha meno impatto sulla luminanza: 0,299R + 0,587G + 0,114B in modo da mantenere la distorsione visiva al minimo.
-- BER è quasi sempre 0, misura possibili errori di scrittura.
-- PSNR: picco segnale/rumore espresso in decibel, su tutti i canali, misura la qualità del segnale.
-- SSIM: structural similarity e misura somiglianze di luminanza e struttura, e calcolarlo in scala di grigi rende il confronto più semplice e meno costoso ma allo stesso tempo è un’informazione di poco valore con valori prossimi al’1 in tutti i casi, perché scriviamo solo nel canale Blu. Nel codice controlliamo solo la similarità sul canale blu per questo motivo.
-- Per messaggi che non riempiono buona parte del segnale disponibile la somiglianza tende ad essere alta, quindi di difficile rilevazione.
+- **BER** (bit error rate): bit diversi fra payload inserito e recuperato. Richiede il messaggio originale noto e vale **0 per costruzione** con PNG/WAV lossless. È mostrato come `n/d` quando non è definito o payload non estraibile
+- PSNR: picco segnale/rumore espresso in decibel, calcolato su R, G e B (alpha escluso), misura la qualità del segnale.
+- **SSIM**: indice di somiglianza strutturale. La definizione standard lavora sulla luminanza che pesa il blu solo 0,114: poiché l'embedding modifica solo quel canale, l'SSIM standard resta schiacciato vicino a 1 e non distingue una immagine alterata. Il progetto usa quindi una **variante non standard calcolata sul solo canale blu** (`SSIMCalculator.ssim(original:modified:)`), che misura la distorsione dove viene effettivamente introdotta; la versione classica su luminanza resta disponibile come `ssimAllChannels(original:modified:)` per confronto. I blocchi sono 8×8 non sovrapposti.
+- Per messaggi che non riempiono buona parte dei bit disponibili la somiglianza tende ad essere alta, quindi di difficile rilevazione.
 
 ## Audio
 
-In *Embed Message* e *Extract Message* è possibile selezionare **Immagine / Audio** per cambiare
-il supporto. L'audio usa esattamente lo stesso header di 8 byte e la stessa
-logica LSB, un bit per campione PCM.
+In *Embed Message* e *Extract Message* è possibile selezionare **Immagine / Audio** per cambiare il supporto. L'audio usa esattamente lo stesso header di 8 byte e la stessa logica LSB, un bit per campione PCM.
 
 **L'uscita è sempre WAV.** Un formato compresso (MP3, AAC) distruggerebbe i bit nascosti, come il JPEG per le immagini.
 

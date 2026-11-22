@@ -30,16 +30,18 @@ final class AnalysisViewModel {
     let ssim = SSIMCalculator().ssim(original: original.pixels, modified: altered.pixels)
     
     var payloadBytes = 0
-    var ber = 0.0
+    var ber: Double?
     extractedMessage = nil
     
-    if let payload = try? container.steganography.extract(from: altered) {
-      extractedMessage = payload
-      payloadBytes = payload.utf8.count
+    if let recovered = try? container.steganography.extractData(from: altered) {
+      payloadBytes = recovered.count
+      extractedMessage = String(data: recovered, encoding: .utf8)
       if !expectedMessage.isEmpty {
-        ber = BERCalculator().ber(reference: expectedMessage, recovered: payload)
+        ber = BERCalculator().ber(reference: Data(expectedMessage.utf8), recovered: recovered)
       }
-      status = "Payload rilevato nell'immagine alterata."
+      status = extractedMessage == nil
+        ? "Payload binario di \(payloadBytes) byte: contenuto non testuale."
+        : "Payload rilevato nell'immagine alterata."
     } else {
       status = "Nessun payload nell'immagine alterata: BER non calcolabile."
     }

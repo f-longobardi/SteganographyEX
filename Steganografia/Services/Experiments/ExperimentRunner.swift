@@ -60,7 +60,7 @@ struct ExperimentRunner {
         strategy: strategy,
         psnr: psnr.psnr(original: image.pixels, modified: altered.pixels),
         ssim: ssim.ssim(original: image.pixels, modified: altered.pixels),
-        ber: ber.ber(reference: message, recovered: recovered)
+        ber: ber.ber(reference: message, recovered: recovered) ?? .nan
       )
     } catch {
       return Row(
