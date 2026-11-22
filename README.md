@@ -18,7 +18,10 @@ oppure da riga di comando:
 
 ```bash
 xcodebuild -project Steganografia.xcodeproj -scheme Steganografia \
-  -configuration Debug -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO build
+  -configuration Debug -destination 'platform=macOS' \
+  CODE_SIGNING_ALLOWED=NO \
+  CONFIGURATION_BUILD_DIR="$PWD/build/Debug" \
+  build
 ```
 
 ## Scelte di progetto
