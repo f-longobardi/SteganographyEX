@@ -1,7 +1,6 @@
 # Steganografia 
 
 App macOS (SwiftUI) per studiare steganografia **LSB** e steganalisi su immagini e audio.
-Nessuna dipendenza esterna: solo SwiftUI, AppKit, Core Graphics.
 
 ## Requisiti
 
@@ -29,8 +28,7 @@ in alternativa è disponibile l'app già buildata per X86_&4 e ARM64 dalla pagin
 
 **Il messaggio nascosto sta nel canale blu è una sostituzione del LSB per ogni pixel**
 
-**Header di 8 byte**: `"SL" | versione | strategia | lunghezza UInt32` sui primi
-64 pixel in ordine di scansione. L'estrazione non chiede nulla all'utente.
+**Header di 8 byte**: `"SL" | versione | strategia | lunghezza UInt32` sui primi 64 pixel in ordine di scansione. L'estrazione non chiede nulla all'utente.
 
 ## Immagini
 **L'output è sempre PNG per le immagini.** 
