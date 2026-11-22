@@ -56,7 +56,7 @@ In *Embed Message* e *Extract Message* è possibile selezionare **Immagine / Aud
 
 ## Disclaimer uso AI
 
-- E' stata usata Claude opus per creare un'applicazione di steganalisi in python per validare i risultati ottenuti in questa app, alcuni spunti per la steganalisi sono stati presa di lì, come utilizzare anche il bilanciamento e l'entropia, e che è quasi impossibile rilevare un messaggio che è scritto in un solo canale se si analizzano tutti e 3.
+- E' stata usata Claude opus per creare un'applicazione di steganalisi in python per validare i risultati ottenuti in questa app, alcuni spunti per la steganalisi sono stati presa di lì, come utilizzare anche il bilanciamento e l'entropia.
 - Filtro di Sobel con finestra mobile ottimizzato da Deepseek
 - E' stato fatto un double-check con Deepseek a fine progetto per controllare che il progetto rispettasse le specifiche iniziali
 - Alcuni messaggi di commit sono stati suggeriti in automatico da GitHub Copilot.
