@@ -53,3 +53,5 @@ il supporto. L'audio usa esattamente lo stesso header di 8 byte e la stessa
 logica LSB, un bit per campione PCM.
 
 **L'uscita è sempre WAV.** Un formato compresso (MP3, AAC) distruggerebbe i bit nascosti, come il JPEG per le immagini.
+
+Appicon from [Flaticon](https://www.flaticon.com/free-icon/hide_9412796?term=hide+photo&page=1&position=7&origin=search&related_id=9412796)
