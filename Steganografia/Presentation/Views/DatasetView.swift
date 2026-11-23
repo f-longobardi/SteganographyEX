@@ -75,7 +75,7 @@ struct DatasetView: View {
         .pickerStyle(.segmented)
         .frame(maxWidth: 320)
         
-        Button("Genera dataset modificato") {
+        Button("Genera dataset modificato e analizza") {
           Task { await model.generate() }
         }
         .disabled(!model.canGenerate)
