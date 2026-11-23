@@ -67,3 +67,12 @@ In *Embed Message* e *Extract Message* è possibile selezionare **Immagine / Aud
 - Alcuni messaggi di commit sono stati suggeriti in automatico da GitHub Copilot.
 
 Appicon from [Flaticon](https://www.flaticon.com/free-icon/hide_9412796?term=hide+photo&page=1&position=7&origin=search&related_id=9412796)
+
+# Screenshots
+
+<img width="1096" height="686" alt="Dataset Results" src="https://github.com/user-attachments/assets/0fd14af9-2f2f-4262-8af4-ad6c5ada3246" />
+
+<img width="898" height="492" alt="Embed Audio" src="https://github.com/user-attachments/assets/736a16e5-a8b4-448f-bf57-225b1a3de5d5" />
+
+<img width="305" height="400" alt="StegAnalisi" src="https://github.com/user-attachments/assets/96bd34b5-8c84-48e9-a787-d9f721b8f79f" />
+
