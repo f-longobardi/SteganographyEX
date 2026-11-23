@@ -38,6 +38,11 @@ in alternativa è disponibile l'app già buildata per X86_&4 e ARM64 dalla pagin
 - Per l’elaborazione di batch di immagini utilizziamo un background thread, tornando su **Main Actor** solo per gli aggiornamenti di UI
 - Di default scrive su tutti i byte disponibili oppure un messaggio scritto dall'utente.
 
+File del dataset scaricati e salvati in: ```~/Library/Application Support/SteganografiaLab```
+
+File elaborati e da confrontare in: ```~/Library/Caches/SteganografiaLab```
+
+
 **Strategia:** 
 - Scrittura su file di Immagini o file Audio supportati da AVFoundation (i formati più comuni)
 - Possibile scrittura uniforme o solo sui bordi di un immagine tramite edge detection.
